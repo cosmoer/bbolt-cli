@@ -14,3 +14,9 @@ require (
 	github.com/shurcooL/sanitized_anchor_name v1.0.0 // indirect
 	golang.org/x/sys v0.0.0-20211019181941-9d821ace8654 // indirect
 )
+
+retract (
+	v0.0.0-20220301140752-59b71bcbf3a0
+	v0.0.0-20220301064236-ced2e67245fa
+	v0.0.0-20220228160738-3011b02d8b8c
+)
