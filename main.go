@@ -26,7 +26,7 @@ import (
 func main() {
 	appInstance := app.New()
 	if err := appInstance.Run(os.Args); err != nil {
-		fmt.Fprintf(os.Stderr, "ctr: %s\n", err)
+		fmt.Fprintf(os.Stderr, "bbolt-cli: %s\n", err)
 		os.Exit(1)
 	}
 }

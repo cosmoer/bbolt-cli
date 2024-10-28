@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/cosmoer/bbolt-cli/boltutils"
 	"github.com/cosmoer/bbolt-cli/schema"
@@ -37,8 +38,12 @@ var Command = cli.Command{
 		}
 
 		// Open bolt database.
-		src, err := bolt.Open(SrcPath, 0444, nil)
+		src, err := bolt.Open(SrcPath, 0444, &bolt.Options{Timeout: 2 * time.Second})
 		if err != nil {
+			if err == bolt.ErrTimeout {
+				fmt.Println("Timeout: Unable to acquire the BoltDB file lock. Another process is holding it.")
+				return nil
+			}
 			return err
 		}
 		defer src.Close()
